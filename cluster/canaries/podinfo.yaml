@@ -27,13 +27,20 @@ spec:
           max: 500
         interval: 1m
     webhooks:
-      - name: acceptance-test
+      - name: "helm test"
         type: pre-rollout
-        url: http://load-tester.prod/
-        timeout: 30s
+        url: http://helm-tester.prod/
+        timeout: 2m
         metadata:
-          type: bash
-          cmd: "curl -sd 'test' http://podinfo-canary.prod:9898/token | grep token"
+          type: "helmv3"
+          cmd: "test podinfo"      
+#      - name: acceptance-test
+#        type: pre-rollout
+#        url: http://load-tester.prod/
+#        timeout: 30s
+#        metadata:
+#          type: bash
+#          cmd: "curl -sd 'test' http://podinfo-canary.prod:9898/token | grep token"
       - name: load-test
         type: rollout
         url: http://load-tester.prod/
