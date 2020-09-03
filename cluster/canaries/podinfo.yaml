@@ -13,9 +13,10 @@ spec:
   service:
     port: 9898
   analysis:
+    iterations: 5
     interval: 10s
-    maxWeight: 100
-    stepWeight: 5
+#    maxWeight: 100
+#    stepWeight: 5
     threshold: 5
     metrics:
       - name: request-success-rate
@@ -33,7 +34,7 @@ spec:
         timeout: 2m
         metadata:
           type: "helmv3"
-          cmd: "test podinfo"      
+          cmd: "test podinfo"
 #      - name: acceptance-test
 #        type: pre-rollout
 #        url: http://load-tester.prod/
